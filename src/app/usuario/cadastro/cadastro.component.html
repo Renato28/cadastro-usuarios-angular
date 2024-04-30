@@ -1,0 +1,19 @@
+<form (ngSubmit)="submitForm()" class="mt-4">
+  <div>
+    <label for="nome" class="form-label">Nome:</label>
+    <input type="text" class="form-control" name="nome" id="nome" [(ngModel)]="usuario.nome" required>
+  </div>
+  <div>
+    <label for="email" class="form-label">Email:</label>
+    <input type="email" class="form-control" name="email" id="email" [(ngModel)]="usuario.email" required>
+  </div>
+  <div>
+    <label for="senha" class="form-label">Senha:</label>
+    <input type="password" class="form-control" name="senha" id="senha" [(ngModel)]="usuario.senha" required>
+  </div>
+  <div>
+    <label for="confirmacaoSenha" class="form-label">Confirmação Senha:</label>
+    <input type="password" class="form-control" name="confirmacaoSenha" id="confirmacaoSenha" [(ngModel)]="usuario.confirmaSenha" required>
+  </div>
+  <button type="submit" class="btn btn-primary">Cadastrar</button>
+</form>
