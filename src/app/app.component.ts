@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { CadastroComponent } from './usuario/cadastro/cadastro.component';
+import { UsuarioComponent } from './usuario/cadastro/usuario.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CadastroComponent],
+  imports: [RouterOutlet, UsuarioComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

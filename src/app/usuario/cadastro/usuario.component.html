@@ -1,7 +1,7 @@
 <form (ngSubmit)="submitForm()" [formGroup]="usuarioForm">
   <div class="mb-3">
     <label for="nome" class="form-label">Nome:</label>
-    <input type="text" class="form-control" formControlName="nome" name="nome" id="nome" [(ngModel)]="usuario.nome">
+    <input type="text" class="form-control" formControlName="nome" name="nome" id="nome" minlength="3" maxlength="50" [(ngModel)]="usuario.nome">
     <div *ngIf="usuarioForm.get('nome')?.errors?.['required']" class="text-danger">O campo nome é obrigatório e deve ter entre 3 e 50 caracteres</div>
   </div>
   <div>
@@ -11,13 +11,16 @@
   </div>
   <div>
     <label for="senha" class="form-label">Senha:</label>
-    <input type="password" class="form-control" formControlName="senha" name="senha" id="senha" [(ngModel)]="usuario.senha">
+    <input type="password" class="form-control" formControlName="senha" name="senha" id="senha" minlength="6" maxlength="20" [(ngModel)]="usuario.senha">
     <div *ngIf="usuarioForm.get('senha')?.errors?.['required']" class="text-danger">O campo senha é obrigatório e deve ter entre 6 e 20 caracteres</div>
   </div>
   <div>
     <label for="confirmacaoSenha" class="form-label">Confirmação Senha:</label>
-    <input type="password" class="form-control" formControlName="confirmacaoSenha" name="confirmacaoSenha" id="confirmacaoSenha" [(ngModel)]="usuario.confirmaSenha">
+    <input type="password" class="form-control" formControlName="confirmacaoSenha" name="confirmacaoSenha" id="confirmacaoSenha" minlength="6" maxlength="20" [(ngModel)]="usuario.confirmacaoSenha">
     <div *ngIf="usuarioForm.get('confirmacaoSenha')?.errors?.['required']" class="text-danger">O campo confirmação de senha é obrigatório e deve coincidir com a senha</div>
   </div>
-  <button type="submit" class="btn btn-primary" [disabled]="usuarioForm.invalid">Cadastrar</button>
+  <button type="submit" (click)="cadastrarUsuario()" class="btn btn-primary" [disabled]="usuarioForm.invalid">Cadastrar</button>
+  <div [@successMessage]="isMessageVisible ? 'open' : 'closed'" class="open-close-container" *ngIf="isMessageVisible">
+    <p>Usuário cadastrado com sucesso!</p>
+  </div>
 </form>
