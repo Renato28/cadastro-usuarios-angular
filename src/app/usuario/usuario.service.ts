@@ -29,6 +29,10 @@ export class UsuarioService {
         if (error.status === 400) {
           errorMessage = `Já existe um usuário cadastrado com o nome ${usuario.nome}`;
         }
+
+        if (error.status === 400) {
+          errorMessage = `Já existe um usuário cadastrado com o email ${usuario.email}`;
+        }
         console.error(`Erro código ${error.status}, body foi: `, error.error);
         this.showMessage(errorMessage, true);
         return throwError('Erro de cadastro de usuário');
