@@ -20,7 +20,4 @@
     <div *ngIf="usuarioForm.get('confirmacaoSenha')?.errors?.['required']" class="text-danger">O campo confirmação de senha é obrigatório e deve coincidir com a senha</div>
   </div>
   <button type="submit" (click)="cadastrarUsuario()" class="btn btn-primary" [disabled]="usuarioForm.invalid">Cadastrar</button>
-  <div [@successMessage]="isMessageVisible ? 'open' : 'closed'" class="open-close-container" *ngIf="isMessageVisible">
-    <p>Usuário cadastrado com sucesso!</p>
-  </div>
 </form>

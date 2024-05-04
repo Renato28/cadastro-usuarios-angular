@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Usuario } from '../entity/Usuario';
-import { Observable } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
@@ -16,14 +16,26 @@ export class UsuarioService {
   showMessage(msg: string, isError: boolean = false): void {
     this.snackBar.open(msg, 'X', {
       duration: 3000,
-      horizontalPosition: "right",
+      horizontalPosition: "center",
       verticalPosition: "top",
       panelClass: isError ? ['msg-error'] : ['msg-success']
     })
   }
 
-
   cadastrar(usuario: Usuario): Observable<Usuario> {
-    return this.http.post<Usuario>(this.baseUrl, usuario)
+    return this.http.post<Usuario>(this.baseUrl, usuario).pipe(
+      catchError((error: HttpErrorResponse) => {
+        let errorMessage = 'Erro ao cadastrar usuário.';
+        if (error.status === 400) {
+          errorMessage = 'Erro ao cadastrar usuário: dados inválidos.';
+        }
+        console.error(`Erro código ${error.status}, body foi: `, error.error);
+        this.showMessage(errorMessage, true);
+        return throwError('Erro de cadastro de usuário');
+      })
+    );
   }
+
+
+
 }
