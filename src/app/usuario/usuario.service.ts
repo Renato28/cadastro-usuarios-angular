@@ -27,7 +27,7 @@ export class UsuarioService {
       catchError((error: HttpErrorResponse) => {
         let errorMessage = 'Erro ao cadastrar usuário.';
         if (error.status === 400) {
-          errorMessage = 'Erro ao cadastrar usuário: dados inválidos.';
+          errorMessage = `Já existe um usuário cadastrado com o nome ${usuario.nome}`;
         }
         console.error(`Erro código ${error.status}, body foi: `, error.error);
         this.showMessage(errorMessage, true);

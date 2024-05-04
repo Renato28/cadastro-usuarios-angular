@@ -46,8 +46,7 @@ export class UsuarioComponent implements OnInit{
 
   cadastrarUsuario(): void {
     this.usuarioService.cadastrar(this.usuario).subscribe(() => {
-      this.router.navigate(['/usuarios'])
-
+      this.usuarioService.showMessage('Usuário cadastrado com sucesso!');
     }
   )
   }
@@ -65,7 +64,7 @@ export class UsuarioComponent implements OnInit{
 
   submitForm() {
     if(this.usuarioForm.valid) {
-      this.usuarioService.showMessage('Usuário cadastrado com sucesso!');
+      this.router.navigate(['/usuarios']);
     }
   }
 
